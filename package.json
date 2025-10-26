@@ -72,7 +72,6 @@
     "sonner": "^1.7.4",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
-    "vaul": "^0.9.9",
     "viem": "^2.21.54",
     "zod": "3.25.76"
   },
@@ -99,11 +98,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/uars-dashboard.git"
+    "url": "https://github.com/Althafp/UARS.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/uars-dashboard/issues"
+    "url": "https://github.com/Althafp/UARS/issues"
   },
-  "homepage": "https://github.com/yourusername/uars-dashboard#readme",
+  "homepage": "https://github.com/Althafp/UARS#readme",
   "type": "module"
 }
