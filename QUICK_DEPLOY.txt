@@ -1,0 +1,122 @@
+════════════════════════════════════════════════════════════════
+  🚀 QUICK DEPLOYMENT GUIDE - Achievement NFT Contract
+════════════════════════════════════════════════════════════════
+
+📍 STEP 1: Open Git Bash
+──────────────────────────────────────────────────────────────
+Right-click in uars-dashboard folder → "Git Bash Here"
+
+
+📍 STEP 2: Navigate & Compile
+──────────────────────────────────────────────────────────────
+cd uars-foundry
+forge build
+
+
+📍 STEP 3: Set Private Key
+──────────────────────────────────────────────────────────────
+export PRIVATE_KEY=your_metamask_private_key_here
+
+
+📍 STEP 4: Deploy Contract
+──────────────────────────────────────────────────────────────
+forge create src/AchievementNFTIntegrated.sol:AchievementNFTIntegrated \
+  --rpc-url https://evm.rpc-testnet-donut-node1.push.org/ \
+  --private-key $PRIVATE_KEY
+
+⚠️  COPY THE "Deployed to" ADDRESS!
+
+
+📍 STEP 5: Set Lending Contract
+──────────────────────────────────────────────────────────────
+cast send YOUR_DEPLOYED_ACHIEVEMENT_ADDRESS \
+  "setLendingContract(address)" \
+  0x98CDdEcCc5614A15f0B0E97b2009ABbd71bF2C09 \
+  --rpc-url https://evm.rpc-testnet-donut-node1.push.org/ \
+  --private-key $PRIVATE_KEY
+
+(Replace YOUR_DEPLOYED_ACHIEVEMENT_ADDRESS with address from Step 4)
+
+
+📍 STEP 6: Update .env.local
+──────────────────────────────────────────────────────────────
+Open .env.local in root folder
+Replace this line:
+
+NEXT_PUBLIC_ACHIEVEMENT_NFT_ADDRESS=0xYourNewDeployedAddress
+
+
+📍 STEP 7: Restart Dev Server (PowerShell)
+──────────────────────────────────────────────────────────────
+Ctrl+C (stop server)
+npm run dev
+
+
+📍 STEP 8: Test It Works
+──────────────────────────────────────────────────────────────
+1. Go to: http://localhost:3000/achievements
+2. Claim "Early Adopter" (should work immediately)
+3. NFT appears in "Your Claimed Achievement NFTs" section
+4. Go to: http://localhost:3000/lending
+5. Borrow 0.1 PC
+6. Return to /achievements
+7. Click "Refresh"
+8. Claim "DeFi Novice" (should work after 1 borrow)
+9. See 2 NFTs in claimed section
+
+
+════════════════════════════════════════════════════════════════
+  ✅ SUCCESS INDICATORS
+════════════════════════════════════════════════════════════════
+
+✓ Deployment shows "Deployed to: 0x..."
+✓ /achievements page loads without errors
+✓ "Early Adopter" can be claimed
+✓ NFT appears in green "Claimed NFTs" section
+✓ Button changes to "NFT Claimed ✓"
+✓ After 1 borrow, "DeFi Novice" unlocks
+
+
+════════════════════════════════════════════════════════════════
+  ❌ COMMON ERRORS & FIXES
+════════════════════════════════════════════════════════════════
+
+"forge: command not found"
+→ Install Foundry: curl -L https://foundry.paradigm.xyz | bash
+→ Then: foundryup
+
+"private key is invalid"
+→ Make sure it starts with 0x
+→ No spaces, no quotes in the key
+
+"insufficient funds"
+→ Get testnet tokens: https://faucet.push.org/
+
+"Transaction failed" when claiming
+→ Not enough loans - borrow more on /lending
+→ Or already claimed - check claimed section
+
+
+════════════════════════════════════════════════════════════════
+  📋 ACHIEVEMENT REQUIREMENTS
+════════════════════════════════════════════════════════════════
+
+Early Adopter    → 0 loans (instant)
+DeFi Novice      → 1 loan
+Volume Starter   → 2 loans
+Consistent User  → 3 loans
+DeFi Expert      → 3 loans
+DeFi Master      → 5 loans
+Perfect Record   → 5 loans
+Volume Trader    → 10 loans
+
+
+════════════════════════════════════════════════════════════════
+  🎯 NEED HELP?
+════════════════════════════════════════════════════════════════
+
+Read full guide: DEPLOY_ACHIEVEMENT_GITBASH.md
+Contract details: ACHIEVEMENT_NFT_FIX.md
+
+════════════════════════════════════════════════════════════════
+

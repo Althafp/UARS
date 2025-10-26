@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UARS Extension Icons</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #1a1a1a; color: white; }
+    .icon { margin: 20px; text-align: center; }
+    svg { background: white; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>UARS Extension Icons</h1>
+  <p>Right-click each icon and "Save image as..." to create icon16.png, icon48.png, icon128.png</p>
+  
+  <div class="icon">
+    <h3>16x16</h3>
+    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <rect width="16" height="16" fill="url(#grad1)" rx="3"/>
+      <path d="M8 2L10 6L14 7L11 10L12 14L8 12L4 14L5 10L2 7L6 6L8 2Z" fill="white"/>
+    </svg>
+  </div>
+  
+  <div class="icon">
+    <h3>48x48</h3>
+    <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <rect width="48" height="48" fill="url(#grad2)" rx="8"/>
+      <path d="M24 8L29 18L40 20L32 28L34 40L24 34L14 40L16 28L8 20L19 18L24 8Z" fill="white"/>
+    </svg>
+  </div>
+  
+  <div class="icon">
+    <h3>128x128</h3>
+    <svg width="128" height="128" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <rect width="128" height="128" fill="url(#grad3)" rx="20"/>
+      <path d="M64 20L77 50L108 54L86 76L91 108L64 92L37 108L42 76L20 54L51 50L64 20Z" fill="white" stroke="white" stroke-width="2"/>
+    </svg>
+  </div>
+  
+  <script>
+    // Auto-convert to PNG and download
+    function svgToPng(svgElement, filename, size) {
+      const canvas = document.createElement('canvas')
+      canvas.width = size
+      canvas.height = size
+      const ctx = canvas.getContext('2d')
+      
+      const data = new XMLSerializer().serializeToString(svgElement)
+      const blob = new Blob([data], { type: 'image/svg+xml' })
+      const url = URL.createObjectURL(blob)
+      
+      const img = new Image()
+      img.onload = function() {
+        ctx.drawImage(img, 0, 0)
+        canvas.toBlob(function(blob) {
+          const link = document.createElement('a')
+          link.download = filename
+          link.href = URL.createObjectURL(blob)
+          link.click()
+        })
+      }
+      img.src = url
+    }
+    
+    // Add download buttons
+    window.onload = function() {
+      const button = document.createElement('button')
+      button.textContent = 'Download All Icons as PNG'
+      button.style.cssText = 'padding: 15px 30px; font-size: 16px; cursor: pointer; background: #667eea; color: white; border: none; border-radius: 8px;'
+      button.onclick = function() {
+        const svgs = document.querySelectorAll('svg')
+        setTimeout(() => svgToPng(svgs[0], 'icon16.png', 16), 0)
+        setTimeout(() => svgToPng(svgs[1], 'icon48.png', 48), 500)
+        setTimeout(() => svgToPng(svgs[2], 'icon128.png', 128), 1000)
+        alert('Icons will download in a moment!')
+      }
+      document.body.insertBefore(button, document.body.firstChild)
+    }
+  </script>
+</body>
+</html>
+
