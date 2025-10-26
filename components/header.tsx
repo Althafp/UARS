@@ -123,58 +123,46 @@ export default function Header() {
 
         {/* Right Actions */}
         <div className="flex items-center gap-3">
+          {/* Twitter Connection - Always visible */}
+          {isTwitterConnected && twitterProfile ? (
+            <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-blue-500/20 border border-blue-400/30">
+              {twitterProfile.profileImage && (
+                <img 
+                  src={twitterProfile.profileImage} 
+                  alt={twitterProfile.displayName}
+                  className="w-5 h-5 rounded-full"
+                />
+              )}
+              <span className="text-sm text-blue-400">@{twitterProfile.username}</span>
+            </div>
+          ) : (
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="gap-2 border-blue-400/30 hover:bg-blue-500/10 bg-transparent text-blue-400 hover:text-blue-300"
+              onClick={handleConnectWithX}
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+              <span className="hidden sm:inline">Connect with X</span>
+            </Button>
+          )}
+
+          {/* Wallet Connection */}
           {!isConnected ? (
-            <>
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className="gap-2 border-white/20 hover:bg-white/10 bg-transparent"
-                onClick={connect}
-                disabled={isLoading}
-              >
-                <Wallet className="w-4 h-4" />
-                <span className="hidden sm:inline">{isLoading ? 'Connecting...' : 'Connect Wallet'}</span>
-              </Button>
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className="gap-2 border-blue-400/30 hover:bg-blue-500/10 bg-transparent text-blue-400 hover:text-blue-300"
-                onClick={handleConnectWithX}
-              >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-                <span className="hidden sm:inline">Connect with X</span>
-              </Button>
-            </>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="gap-2 border-white/20 hover:bg-white/10 bg-transparent"
+              onClick={connect}
+              disabled={isLoading}
+            >
+              <Wallet className="w-4 h-4" />
+              <span className="hidden sm:inline">{isLoading ? 'Connecting...' : 'Connect Wallet'}</span>
+            </Button>
           ) : (
             <>
-              {/* Twitter Profile Badge */}
-              {isTwitterConnected && twitterProfile ? (
-                <div className="hidden lg:flex items-center gap-2 px-3 py-2 rounded-lg bg-blue-500/20 border border-blue-400/30">
-                  {twitterProfile.profileImage && (
-                    <img 
-                      src={twitterProfile.profileImage} 
-                      alt={twitterProfile.displayName}
-                      className="w-5 h-5 rounded-full"
-                    />
-                  )}
-                  <span className="text-sm text-blue-400">@{twitterProfile.username}</span>
-                </div>
-              ) : (
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="hidden lg:flex gap-2 text-blue-400 hover:text-blue-300 hover:bg-blue-500/10"
-                  onClick={handleConnectWithX}
-                >
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                  </svg>
-                  <span className="text-xs">Connect X</span>
-                </Button>
-              )}
-
               {/* Reputation Score Badge */}
               {reputation && (
                 <div className="hidden lg:flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-500/30">
