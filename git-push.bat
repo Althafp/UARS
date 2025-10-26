@@ -1,4 +1,7 @@
 @echo off
+echo Pulling latest changes from GitHub...
+git pull origin main --no-rebase
+
 echo Adding all files...
 git add -A
 
@@ -10,4 +13,3 @@ git push origin main
 
 echo Done!
 pause
-
