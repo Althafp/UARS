@@ -1,7 +1,7 @@
 // UARS Twitter Extension - Native Integration
 console.log('🔥 UARS Extension loaded!')
 
-const API_URL = 'http://localhost:3000'
+const API_URL = 'https://uars.vercel.app'
 
 // Extract Twitter username from URL
 function getTwitterUsername() {
@@ -70,7 +70,7 @@ function createNativeReputationBadge(reputationData) {
   badge.onclick = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    window.open('http://localhost:3000', '_blank')
+    window.open('https://uars.vercel.app', '_blank')
   }
   
   // Simple hover effect

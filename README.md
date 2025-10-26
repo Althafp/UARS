@@ -78,6 +78,12 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+## 🌐 Live Demo
+
+**Production URL**: [https://uars.vercel.app](https://uars.vercel.app)
+
+The live application is deployed on Vercel with full Twitter OAuth integration.
+
 ## 🔧 Smart Contract Deployment
 
 ### Using Foundry
@@ -210,9 +216,9 @@ This project is licensed under the MIT License.
 
 ## 🔗 Links
 
-- **Demo**: [Coming Soon]
+- **Live Demo**: [https://uars.vercel.app](https://uars.vercel.app)
+- **GitHub**: [https://github.com/Althafp/UARS](https://github.com/Althafp/UARS)
 - **Documentation**: [Wiki](https://github.com/Althafp/UARS/wiki)
-- **Twitter**: [@UARS_Protocol](https://twitter.com)
 
 ## 🙏 Acknowledgments
 
