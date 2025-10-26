@@ -32,6 +32,13 @@ export async function startXOAuth(): Promise<void> {
   const REDIRECT_URI = process.env.NEXT_PUBLIC_REDIRECT_URI || 'http://localhost:3000/api/auth/x/callback'
   const SCOPE = 'users.read tweet.read'
 
+  // Debug logging
+  console.log('🔐 OAuth Config:', {
+    clientId: CLIENT_ID ? `${CLIENT_ID.substring(0, 10)}...` : 'MISSING',
+    redirectUri: REDIRECT_URI,
+    scope: SCOPE
+  })
+
   if (!CLIENT_ID) {
     alert('X Client ID missing. Add NEXT_PUBLIC_X_CLIENT_ID to .env.local')
     return
