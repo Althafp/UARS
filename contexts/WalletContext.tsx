@@ -40,6 +40,12 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     const savedAddress = localStorage.getItem('uars_wallet_address');
     const savedTwitterProfile = localStorage.getItem('uars_twitter_profile');
     
+    console.log('🔍 Checking saved connections:', {
+      hasWallet: !!savedAddress,
+      hasTwitter: !!savedTwitterProfile,
+      twitterData: savedTwitterProfile
+    });
+    
     if (savedAddress) {
       setAddress(savedAddress);
       setIsConnected(true);
@@ -49,6 +55,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     if (savedTwitterProfile) {
       try {
         const profile = JSON.parse(savedTwitterProfile);
+        console.log('✅ Loaded Twitter profile:', profile);
         setTwitterProfile(profile);
         setIsTwitterConnected(true);
         
@@ -57,7 +64,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
           linkTwitterToWallet(profile.username, savedAddress);
         }
       } catch (error) {
-        console.error('Failed to parse saved Twitter profile:', error);
+        console.error('❌ Failed to parse saved Twitter profile:', error);
       }
     }
   }, []);

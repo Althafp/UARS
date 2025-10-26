@@ -123,9 +123,11 @@ export async function GET(request: NextRequest) {
               clearTimeout(timeoutId);
               if (data.success) {
                 console.log('✅ Token exchange successful');
+                console.log('📦 Profile data:', data.profile);
                 
                 // Store profile in localStorage
                 localStorage.setItem('uars_twitter_profile', JSON.stringify(data.profile));
+                console.log('💾 Saved to localStorage:', localStorage.getItem('uars_twitter_profile'));
                 
                 // Clean up sessionStorage
                 sessionStorage.removeItem('x_code_verifier');
